@@ -1,0 +1,39 @@
+function diagnose() {
+    // Ambil gejala yang dipilih
+    var selectedSymptoms = [];
+    var selectBox = document.getElementById('symptoms');
+    for (var i = 0; i < selectBox.options.length; i++) {
+        if (selectBox.options[i].selected) {
+            selectedSymptoms.push(selectBox.options[i].value);
+        }
+    }
+
+    // Lakukan diagnosa kekurangan unsur hara dan saran penggunaan pupuk
+    var result = "Hasil Diagnosa: ";
+    var treatment = "Saran Penggunaan Pupuk: ";
+    if (selectedSymptoms.length === 0) {
+        result += "Pilih setidaknya satu gejala.";
+    } else {
+        // Logika diagnosa kekurangan unsur hara
+        if (selectedSymptoms.includes("daun_kuning")) {
+            result += "Tanaman jagung mungkin mengalami kekurangan nitrogen.";
+            treatment += "Gunakan pupuk yang mengandung nitrogen sesuai dosis anjuran.";
+        } else if (selectedSymptoms.includes("daun_puruh")) {
+            result += "Tanaman jagung mungkin mengalami kekurangan fosfor.";
+            treatment += "Berikan pupuk fosfor sesuai petunjuk penggunaan.";
+        } else if (selectedSymptoms.includes("daun_bergaris")) {
+            result += "Tanaman jagung mungkin mengalami kekurangan kalium.";
+            treatment += "Pupuk dengan kandungan kalium dapat membantu.";
+        } else if (selectedSymptoms.includes("daun_kering")) {
+            result += "Daun tanaman jagung mengering, kemungkinan kekurangan air.";
+            treatment += "Periksa kondisi penyiraman dan pastikan tanaman mendapatkan cukup air.";
+        } else {
+            result += "Tidak dapat menentukan kekurangan unsur hara.";
+            treatment += "Konsultasikan dengan ahli pertanian untuk analisis lebih lanjut.";
+        }
+    }
+
+    // Tampilkan hasil diagnosa dan saran penggunaan pupuk
+    document.getElementById('result').innerText = result;
+    document.getElementById('treatment').innerText = treatment;
+}
